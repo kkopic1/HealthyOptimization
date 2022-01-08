@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='rezultat.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Diet problem</title>
+</head>
+<body>
+    <div id="background">
+        <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{{url_for('callIndex')}}"><img src="{{url_for('static', filename='slike/logo.PNG')}}" style="height: 40px; width: 300px;" alt="logo"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Menu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="{{url_for('callIndex')}}">Početna</a></li>
+                      <li><a class="dropdown-item" href="{{url_for('callCalculator')}}">Napravi plan</a></li>
+                      <li><a class="dropdown-item" href="{{url_for('callKatalog')}}">Katalog namirnica</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <div id="rezultat">
+
+            <div id="Uvod" style="padding-bottom: 50px; padding-top: 70px; text-align: center;">
+              <h2>
+                Vaš plan prehrane:
+              </h2>
+
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-5 g-6">
+              {% for i in range(0,data[6]) %}
+              <div class="col" style="padding-top: 20px;">
+                <div class="card  h-100">
+                  <img src="{{data[2][loop.index-1][0]}}" class="card-img-top" alt="Namirnica">
+                  <div class="card-body">
+                    <h5 class="card-title"> {{data[0][loop.index -1]}} </h5>
+                    <p class="card-text">Količina: {{data[1][loop.index -1]}} g </p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              
+            </div>
+  
+            
+
+            <div id="detalji" style="padding-top: 70px;">
+              <h3>
+                Ukupan broj kalorija: <b>{{data[4]}} kcal </b> 
+              </h3>
+              <h3 style="padding-top: 20px;">
+                Ukupan trošak:  <b> {{ data[3]}} kn</b>
+              </h3>
+            </div>
+
+            <div style="padding-top: 100px;">
+              <a href="{{url_for('callCalculator')}}" class="btn btn-outline-primary btn-lg" tabindex="-1" role="button"><i class="fa fa-arrow-circle-left"></i> Natrag</a>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-secondary  btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left: 1060px;">
+                  <i class="fa fa-info-circle"></i> Info 
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Formalni problem linearnog programiranja</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            {% for item in data[5] %}
+                            <p>{{item}}</p>
+                            {% endfor %}
+                          </div>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          </div>
+                      </div>
+                      </div>
+
+                </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <footer class="text-center text-white" style="background-color: #caced1;  width: 1580px;">
+          <!-- Grid container -->
+          <div>
+            <p>
+              <h2>
+                Za više ideja i zdravih obroka posjetite sljedeće profile:
+              </h2>
+            </p>
+          </div>
+          <div class="container p-4">
+            <!-- Section: Images -->
+            <section class="">
+              <div class="row">
+                <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                  <div
+                    class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    data-ripple-color="light"
+                  >
+                  <a href="https://www.instagram.com/jankabudimir/">
+                    <img
+                    src="{{url_for('static', filename='slike/janka.jpg')}}"
+                      class="w-100"
+                      style="height: 130px;"
+                    />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                  <div
+                    class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    data-ripple-color="light"
+                  >
+                  <a href="https://www.instagram.com/marica_topfit/">
+                    <img
+                    src="{{url_for('static', filename='slike/marica.jpg')}}"
+                      class="w-100"
+                      style="height: 130px;"
+                    />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                  <div
+                    class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    data-ripple-color="light"
+                  >
+                  <a href="https://www.klubzdravihnavika.com/category/recepti/">
+                    <img
+                    src="{{url_for('static', filename='slike/klub.jpg')}}"
+                      class="w-100"
+                      style="height: 130px;"
+                    />
+                   
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                  <div
+                    class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    data-ripple-color="light"
+                  >
+                  <a href="https://www.youtube.com/watch?v=R8pHvgUpprc&feature=youtu.be">
+                    <img
+                    src="{{url_for('static', filename='slike/martina.jpg')}}"
+                      class="w-100"
+                      style="height: 130px;"
+                    />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                  <div
+                    class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    data-ripple-color="light"
+                  >
+                  <a href="https://www.instagram.com/_mommy_in_the_kitchen/?utm_medium=copy_link">
+                    <img
+                    src="{{url_for('static', filename='slike/mommy.PNG')}}"
+                      class="w-100"
+                      style="height: 130px;"
+                    />
+            
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+                  <div
+                    class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    data-ripple-color="light"
+                  >
+                  <a href="https://www.delish.com/cooking/recipe-ideas/a26554658/seared-ahi-tuna-steak-recipe/">
+                    <img
+                    src="{{url_for('static', filename='slike/blog.jpg')}}"
+                      class="w-100"
+                      style="height: 130px;"
+                    />
+                    
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Section: Images -->
+          </div>
+          <!-- Grid container -->
+        
+          <!-- Copyright -->
+          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+      
+      </div>
+        
+        
+    
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='rezultat.js') }}"></script>
+  </body>

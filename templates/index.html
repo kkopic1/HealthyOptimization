@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Diet problem</title>
+</head>
+<body onload="UcitajNaslov()"> 
+    <div id="background">
+        <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{{url_for('callIndex')}}"><img src="{{url_for('static', filename='slike/logo.PNG')}}" style="height: 40px; width: 300px;" alt="logo"></a>
+              <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Menu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="{{url_for('callIndex')}}" >Početna</a></li>
+                      <li><a class="dropdown-item" href="{{url_for('callCalculator')}}" >Napravi plan</a></li>
+                      <li><a class="dropdown-item" href="{{url_for('callKatalog')}}" >Katalog namirnica</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <div id="blok1">
+            <div id="tekst1">
+                <h1 id="naslov"> Napravite plan prehrane  <br> po vašoj mjeri! </h1> 
+            </div>
+            <div id="slika1">
+                <img id="motivacija_slika1" src="{{url_for('static', filename='slike/slika6.jpg')}}" alt="motivation diet">
+            </div>
+        </div>
+
+
+
+        <div id="about">
+
+          <div>
+            <h2 id="NaslovMotivacija"> <b> Što nudimo? </b></h2>
+            <p>
+              <ul id="listaMotivacije">
+                <li style="padding-top: 15px;"> <i class="fa fa-check"></i> <b> Kreirajte optimalan plan prehrane po svojim željama i mogućnostima</b> </li>
+                <li style="padding-top: 15px;"> <i class="fa fa-check"></i> <b> Istražite nutritivne vrijednosti namirnica </b></li>
+                <li style="padding-top: 15px;"> <i class="fa fa-check"></i> <b> Proučite problem Linearnog programiranja na osnovu kojeg <br> kreiramo Vaš optimalan plan </b></li>
+                <li style="padding-top: 15px;"> <i class="fa fa-check"></i> <b> Pronađite ideje i recepte za ukusne i zdrave obroke </b></li>
+              </ul>
+            </p>
+          </div>
+
+          <div style="position: absolute; left:1000px; top:-40px;">
+          <img src="{{url_for('static', filename='slike/avatar.jpg')}}" alt="avatar" style="border-radius: 50%; width: 470px; height: 450px;">
+        </div>
+        <a href="{{url_for('callIndex')}}" title="Kreirajte svoj plan prehrane">
+          <img src="{{url_for('static', filename='slike/makePlan.jpg')}}" alt="makePlan" style="border-radius:50%; position: absolute; top: 115px; left:1050px; width: 80px; height: 80px;">
+        </a>
+        <a href="{{url_for('callKatalog')}}" title="Nutritivne vrijednosti namirnica">
+          <img src="{{url_for('static', filename='slike/katalog.jpg')}}" alt="katalog" style="border-radius:50%; position: absolute; top: 34px; left:1102px;  width: 80px; height: 80px;">
+        </a>
+        <a href="#" title="Ideje i recepti za zdrave obroke">
+          <img src="{{url_for('static', filename='slike/webIdeje.jpg')}}" alt="ideje" style="border-radius:50%; position: absolute; top: 115px; left:1350px;  width: 80px; height: 80px;">
+        </a>
+        <a href="#" title="Optimalna dijeta pomoću Linearnog programiranja">
+          <img src="{{url_for('static', filename='slike/code.jpg')}}" alt="code" style="border-radius:50%; position: absolute; top: 35px; left:1295px;  width: 80px; height: 80px;">
+        </a>
+        <a href="#" title="Prilagodi dijetu svojim željama i potrebama">
+          <img src="{{url_for('static', filename='slike/postavke.jpg')}}" alt="postavke" style="border-radius:50%; position: absolute; top: 12px; left:1200px;  width: 80px; height: 80px;">
+        </a>
+        </div>
+       
+     
+        <footer class="text-center text-white"  id="zaglavlje">
+          <!-- Grid container -->
+          <div class="container pt-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+              <!-- Facebook -->
+              <a
+                class="btn btn-link btn-floating btn-lg text-dark"
+                href="#!"
+                role="button"
+                >
+                <i class="fa fa-facebook-f"></i>
+              </a>
+        
+              <!-- Twitter -->
+              <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fa fa-twitter"></i
+              ></a>
+        
+              <!-- Google -->
+              <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fa fa-google"></i
+              ></a>
+        
+              <!-- Instagram -->
+              <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fa fa-instagram"></i
+              ></a>
+        
+              <!-- Linkedin -->
+              <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fa fa-linkedin"></i
+              ></a>
+              <!-- Github -->
+              <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fa fa-github"></i
+              ></a>
+            </section>
+            <!-- Section: Social media -->
+          </div>
+          <!-- Grid container -->
+        
+          <!-- Copyright -->
+          <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+    
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
